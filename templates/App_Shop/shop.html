@@ -1,0 +1,155 @@
+{% extends 'layouts/base.html' %}
+{% block body_block %}
+
+<div class="container py-5">
+    <div class="row">
+
+        <div class="col-lg-3 pl-3">
+            <h1 class="h2 pb-4">Categories</h1>
+            <ul class="list-unstyled templatemo-accordion">
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                        Type
+                        <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                    </a>
+                    <ul class="collapse show list-unstyled pl-3">
+                        <li><a class="text-decoration-none" href="#">Laptop</a></li>
+                        <li><a class="text-decoration-none" href="#">Smart Phone</a></li>
+                        <li><a class="text-decoration-none" href="#">Smart Watch</a></li>
+                        <li><a class="text-decoration-none" href="#">Monitor</a></li>
+                    </ul>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                        RAM/ROM
+                        <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                    </a>
+                    <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                        <li><a class="text-decoration-none" href="#">8GB</a></li>
+                        <li><a class="text-decoration-none" href="#">16GB</a></li>
+                        <li><a class="text-decoration-none" href="#">32GB</a></li>
+                        <li><a class="text-decoration-none" href="#">64GB</a></li>
+                        <li><a class="text-decoration-none" href="#">128GB</a></li>
+                        <li><a class="text-decoration-none" href="#">256GB</a></li>
+                    </ul>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                        Price
+                        <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                    </a>
+                    <ul id="collapseThree" class="collapse list-unstyled pl-3">
+                        <li><a class="text-decoration-none" href="#">10000</a></li>
+                        <li><a class="text-decoration-none" href="#">20000</a></li>
+                        <li><a class="text-decoration-none" href="#">30000</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-inline shop-top-menu pb-3 pt-1">
+                        <li class="list-inline-item">
+                            <a class="h5 text-dark text-decoration-none mr-3" href="#">All</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="h5 text-dark text-decoration-none mr-3" href="#">Laptop</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="h5 text-dark text-decoration-none" href="#">Phone</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="h5 text-dark text-decoration-none" href="#">Smart Watch</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="h5 text-dark text-decoration-none" href="#">Monitor</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="h5 text-dark text-decoration-none" href="#">Router</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pb-4">
+                    <div class="d-flex">
+                        <select class="form-control">
+                            <option>Featured</option>
+                            <option>A to Z</option>
+                            <option>Item</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for product in object_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4 product-wap rounded-0">
+                        <div class="card rounded-0">
+                            <img class="card-img rounded-0 img-fluid" src="/media/{{product.main_image}}">
+                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                    <li><a class="btn btn-success text-white" href="{% url 'App_Shop:product_detail' pk=product.pk %}"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'App_Shop:product_detail' pk=product.pk %}"><i class="fas fa-cart-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="{% url 'App_Shop:product_detail' pk=product.pk %}" class="h2 text-success text-decoration-none"><b>{{product.name}}</b></a>
+                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                <li class="h8">{{product.preview_text}}</li>
+                                <li class="pt-2">
+                                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                </li>
+                            </ul>
+                            <div>
+                                <span class="text-center mr-1 h5"><b>&#2547; {{product.price|floatformat:2}}</b></span> 
+                                <span class="text-center mb-2 text-muted "><del> &#2547; {{product.old_price|floatformat:2}}</del></span>
+                            </div>
+                            <!-- <p class="text-center mb-0">$250.00</p> -->
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>   
+        </div>       
+    </div>            
+</div>
+
+{% endblock body_block %}
+
+
+
+<!-- 
+<div class="container my-5">
+    <h2 class="my-5">Featured Products</h2>
+    <div class="row">
+        {% for product in object_list %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <figure class="card card-product">
+                <div class="img-wrap">
+                    <img src="/media/{{product.main_image}}" alt="" style="width:100%; height:300px;">
+                </div>    
+                <figcaption class="info-wrap">
+                    <h4 class="title"><a href="{% url 'App_Shop:product_detail' pk=product.pk %}">{{product.name}}</a></h4>
+                    <div class="action-wrap">
+                        <div class="price-wrap h5">
+                            <span class="price-new"><b>&#2547; {{product.price|floatformat:2}}</b></span>
+                            <span class="price-old"><del> &#2547; {{product.old_price|floatformat:2}}</del></span>
+                        </div>    
+                    </div>    
+                </figcaption>    
+            </figure>    
+        </div>    
+        {% endfor %}
+
+    </div>    
+</div> -->    
+
+
+

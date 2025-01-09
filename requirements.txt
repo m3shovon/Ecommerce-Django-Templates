@@ -1,0 +1,12 @@
+django
+django-crispy-forms
+crispy-bootstrap4
+# mysqlclient
+pillow
+django-star-ratings
+django-cleanup
+django-admin-interface
+django-jazzmin
+packaging
+# django-cms
+django-check-seo
